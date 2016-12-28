@@ -24,9 +24,9 @@ function setupMethods (bacnetAddon, confirmedCallbacks) {
     return invokeId
   }
 
-  this.closeQueue = bacnetAddon.closeQueue
-  this.whois = bacnetAddon.whois
-  this.isBound = bacnetAddon.isBound
+  //this.closeQueue = bacnetAddon.closeQueue
+  //this.whois = bacnetAddon.whois
+  //this.isBound = bacnetAddon.isBound
   this.readProperty = function (deviceInstance, objectType, objectInstance, property, arrayIndex, callback) {
     if (!objectType) throw new TypeError('Expected an object type, got : ' + objectType)
     const invokeId = bacnetAddon.readProperty(deviceInstance, bacnet.objectTypeToNumber(objectType), objectInstance, bacnet.propertyKeyToNumber(property), arrayIndex)

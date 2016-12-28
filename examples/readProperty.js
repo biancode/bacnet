@@ -1,8 +1,8 @@
 const bacnet = require('../bacnet.js')
 const r = bacnet.init({
   datalink: {
-    iface: process.env.BACNET_INTERFACE,
-    ip_port: process.env.BACNET_PORT || 0xBAC0
+    iface: 'wlan0',
+    ip_port: '0xBAC0'
   },
   device: false
 })
@@ -24,11 +24,11 @@ function objectIdToString (objectId) {
   return bacnet.objectTypeToString(objectId.type) + '/' + objectId.instance
 }
 
-console.log('reading property', bacnet.propertyKeyToString(process.argv[5]))
+console.log('reading property', bacnet.propertyKeyToString('object-list'))
 
-withAddressOrId(process.argv[2], function (addressOrId) {
-  r.readProperty(addressOrId, process.argv[3], process.argv[4], process.argv[5], false, function (err, property) {
-    if (err) throw console.log('Error', err)
+withAddressOrId('141.219.179.177', function (addressOrId) {
+  r.readProperty('141.219.179.177', 'device', '260002', 'object-list', false, function (err, property) {
+  if (err) throw console.log('Error', err)
     console.log('Received property /', objectIdToString(property.object), '/', bacnet.propertyKeyToString(property.property))
     console.log(property.value)
   })

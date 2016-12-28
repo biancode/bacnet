@@ -31,6 +31,7 @@
  License.
  -------------------------------------------
 ####COPYRIGHTEND####*/
+
 #include <stdint.h>
 #include "bacenum.h"
 #include "bacdcode.h"
@@ -41,11 +42,8 @@
 
 #if BACNET_SVC_RP_A
 /* encode service */
-int rp_encode_apdu(
-    uint8_t * apdu,
-    uint8_t invoke_id,
-    BACNET_READ_PROPERTY_DATA * rpdata)
-{
+int rp_encode_apdu( uint8_t * apdu, uint8_t invoke_id, BACNET_READ_PROPERTY_DATA * rpdata) {
+
     int len = 0;        /* length of each encoding */
     int apdu_len = 0;   /* total length of the apdu, return value */
 
@@ -85,11 +83,8 @@ int rp_encode_apdu(
 #endif
 
 /* decode the service request only */
-int rp_decode_service_request(
-    uint8_t * apdu,
-    unsigned apdu_len,
-    BACNET_READ_PROPERTY_DATA * rpdata)
-{
+int rp_decode_service_request( uint8_t * apdu, unsigned apdu_len, BACNET_READ_PROPERTY_DATA * rpdata) {
+
     unsigned len = 0;
     uint8_t tag_number = 0;
     uint32_t len_value_type = 0;
@@ -152,11 +147,8 @@ int rp_decode_service_request(
 }
 
 /* alternate method to encode the ack without extra buffer */
-int rp_ack_encode_apdu_init(
-    uint8_t * apdu,
-    uint8_t invoke_id,
-    BACNET_READ_PROPERTY_DATA * rpdata)
-{
+int rp_ack_encode_apdu_init( uint8_t * apdu, uint8_t invoke_id, BACNET_READ_PROPERTY_DATA * rpdata) {
+
     int len = 0;        /* length of each encoding */
     int apdu_len = 0;   /* total length of the apdu, return value */
 
@@ -190,9 +182,8 @@ int rp_ack_encode_apdu_init(
 }
 
 /* note: encode the application tagged data yourself */
-int rp_ack_encode_apdu_object_property_end(
-    uint8_t * apdu)
-{
+int rp_ack_encode_apdu_object_property_end( uint8_t * apdu) {
+
     int apdu_len = 0;   /* total length of the apdu, return value */
 
     if (apdu) {
@@ -202,11 +193,8 @@ int rp_ack_encode_apdu_object_property_end(
     return apdu_len;
 }
 
-int rp_ack_encode_apdu(
-    uint8_t * apdu,
-    uint8_t invoke_id,
-    BACNET_READ_PROPERTY_DATA * rpdata)
-{
+int rp_ack_encode_apdu( uint8_t * apdu, uint8_t invoke_id, BACNET_READ_PROPERTY_DATA * rpdata) {
+
     int len = 0;        /* length of each encoding */
     int apdu_len = 0;   /* total length of the apdu, return value */
 
@@ -236,11 +224,8 @@ int rp_ack_encode_apdu(
  * @return Number of decoded bytes (could be less than apdu_len),
  * 			or -1 on decoding error.
  */
-int rp_ack_decode_service_request(
-    uint8_t * apdu,
-    int apdu_len,       /* total length of the apdu */
-    BACNET_READ_PROPERTY_DATA * rpdata)
-{
+int rp_ack_decode_service_request( uint8_t * apdu, int apdu_len, BACNET_READ_PROPERTY_DATA * rpdata) {
+
     uint8_t tag_number = 0;
     uint32_t len_value_type = 0;
     int tag_len = 0;    /* length of tag decode */
@@ -294,12 +279,8 @@ int rp_ack_decode_service_request(
 #include <string.h>
 #include "ctest.h"
 
-int rp_decode_apdu(
-    uint8_t * apdu,
-    unsigned apdu_len,
-    uint8_t * invoke_id,
-    BACNET_READ_PROPERTY_DATA * rpdata)
-{
+int rp_decode_apdu( uint8_t * apdu, unsigned apdu_len, uint8_t * invoke_id, BACNET_READ_PROPERTY_DATA * rpdata) {
+
     int len = 0;
     unsigned offset = 0;
 
@@ -323,12 +304,8 @@ int rp_decode_apdu(
     return len;
 }
 
-int rp_ack_decode_apdu(
-    uint8_t * apdu,
-    int apdu_len,       /* total length of the apdu */
-    uint8_t * invoke_id,
-    BACNET_READ_PROPERTY_DATA * rpdata)
-{
+int rp_ack_decode_apdu( uint8_t * apdu, int apdu_len, uint8_t * invoke_id, BACNET_READ_PROPERTY_DATA * rpdata) {
+
     int len = 0;
     int offset = 0;
 
@@ -350,9 +327,8 @@ int rp_ack_decode_apdu(
     return len;
 }
 
-void testReadPropertyAck(
-    Test * pTest)
-{
+void testReadPropertyAck(Test * pTest) {
+
     uint8_t apdu[480] = { 0 };
     uint8_t apdu2[480] = { 0 };
     int len = 0;
@@ -401,9 +377,8 @@ void testReadPropertyAck(
     ct_test(pTest, object_instance == rpdata.object_instance);
 }
 
-void testReadProperty(
-    Test * pTest)
-{
+void testReadProperty(Test * pTest) {
+
     uint8_t apdu[480] = { 0 };
     int len = 0;
     int apdu_len = 0;
@@ -431,9 +406,9 @@ void testReadProperty(
 }
 
 #ifdef TEST_READ_PROPERTY
-int main(
-    void)
-{
+
+int main(void) {
+
     Test *pTest;
     bool rc;
 
@@ -451,5 +426,6 @@ int main(
 
     return 0;
 }
+
 #endif /* TEST_READ_PROPERTY */
 #endif /* TEST */

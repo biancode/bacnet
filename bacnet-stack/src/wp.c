@@ -40,11 +40,8 @@
 /** @file wp.c  Encode/Decode BACnet Write Property APDUs  */
 #if BACNET_SVC_WP_A
 /* encode service */
-int wp_encode_apdu(
-    uint8_t * apdu,
-    uint8_t invoke_id,
-    BACNET_WRITE_PROPERTY_DATA * wpdata)
-{
+int wp_encode_apdu(uint8_t * apdu, uint8_t invoke_id, BACNET_WRITE_PROPERTY_DATA * wpdata) {
+
     int apdu_len = 0;   /* total length of the apdu, return value */
     int len = 0;        /* total length of the apdu, return value */
 
@@ -93,11 +90,8 @@ int wp_encode_apdu(
 /* decode the service request only */
 /* FIXME: there could be various error messages returned
    using unique values less than zero */
-int wp_decode_service_request(
-    uint8_t * apdu,
-    unsigned apdu_len,
-    BACNET_WRITE_PROPERTY_DATA * wpdata)
-{
+int wp_decode_service_request(uint8_t * apdu, unsigned apdu_len, BACNET_WRITE_PROPERTY_DATA * wpdata) {
+
     int len = 0;
     int tag_len = 0;
     uint8_t tag_number = 0;
@@ -181,12 +175,8 @@ int wp_decode_service_request(
 #include <string.h>
 #include "ctest.h"
 
-int wp_decode_apdu(
-    uint8_t * apdu,
-    unsigned apdu_len,
-    uint8_t * invoke_id,
-    BACNET_WRITE_PROPERTY_DATA * wpdata)
-{
+int wp_decode_apdu(uint8_t * apdu, unsigned apdu_len, uint8_t * invoke_id, BACNET_WRITE_PROPERTY_DATA * wpdata) {
+
     int len = 0;
     unsigned offset = 0;
 
@@ -210,10 +200,8 @@ int wp_decode_apdu(
     return len;
 }
 
-void testWritePropertyTag(
-    Test * pTest,
-    BACNET_APPLICATION_DATA_VALUE * value)
-{
+void testWritePropertyTag(Test * pTest, BACNET_APPLICATION_DATA_VALUE * value) {
+
     BACNET_WRITE_PROPERTY_DATA wpdata = { 0 };
     BACNET_WRITE_PROPERTY_DATA test_data = { 0 };
     BACNET_APPLICATION_DATA_VALUE test_value;
@@ -288,9 +276,8 @@ void testWritePropertyTag(
     }
 }
 
-void testWriteProperty(
-    Test * pTest)
-{
+void testWriteProperty(Test * pTest) {
+
     BACNET_APPLICATION_DATA_VALUE value;
 
     value.tag = BACNET_APPLICATION_TAG_NULL;
@@ -366,9 +353,7 @@ void testWriteProperty(
 }
 
 #ifdef TEST_WRITE_PROPERTY
-int main(
-    void)
-{
+int main(void) {
     Test *pTest;
     bool rc;
 

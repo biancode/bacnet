@@ -1,103 +1,36 @@
 {
-  "_args": [
-    [
-      {
-        "raw": "bacnet",
-        "scope": null,
-        "escapedName": "bacnet",
-        "name": "bacnet",
-        "rawSpec": "",
-        "spec": "latest",
-        "type": "tag"
-      },
-      "/home/akhil/bacnet"
-    ]
-  ],
-  "_from": "bacnet@latest",
-  "_id": "bacnet@0.0.13",
-  "_inCache": true,
-  "_location": "/bacnet",
-  "_nodeVersion": "4.4.4",
-  "_npmOperationalInternal": {
-    "host": "packages-12-west.internal.npmjs.com",
-    "tmp": "tmp/bacnet-0.0.13.tgz_1477591577787_0.11080986703746021"
-  },
-  "_npmUser": {
-    "name": "platy",
-    "email": "mpbush@gmail.com"
-  },
-  "_npmVersion": "2.15.1",
-  "_phantomChildren": {},
-  "_requested": {
-    "raw": "bacnet",
-    "scope": null,
-    "escapedName": "bacnet",
-    "name": "bacnet",
-    "rawSpec": "",
-    "spec": "latest",
-    "type": "tag"
-  },
-  "_requiredBy": [
-    "#USER"
-  ],
-  "_resolved": "https://registry.npmjs.org/bacnet/-/bacnet-0.0.13.tgz",
-  "_shasum": "d09cd0e96efce7d85421591743c33d2efd8ed856",
-  "_shrinkwrap": {
-    "name": "bacnet",
-    "version": "0.0.13",
-    "dependencies": {
-      "nan": {
-        "version": "2.2.1",
-        "from": "nan@>=2.1.0 <3.0.0",
-        "resolved": "https://registry.npmjs.org/nan/-/nan-2.2.1.tgz"
-      }
-    }
-  },
-  "_spec": "bacnet",
-  "_where": "/home/akhil/bacnet",
+  "name": "node-red-contrib-BACnet",
+  "version": "0.1.0",
+  "description": "Node-RED node for device BACnet.",
+  "main": "BACnet.js",
   "dependencies": {
-    "nan": "^2.1.0"
+    "request": ">=2.73.0",
+    "xpath":">=0.0.23",
+    "bacnet":">=0.0.13"
   },
-  "description": "(early stages) node wrapper for the bacnet-stack c library",
-  "devDependencies": {
-    "async": "^1.5.2",
-    "mocha": "^2.3.4",
-    "should": "^8.0.1",
-    "standard": "*"
-  },
-  "directories": {},
-  "dist": {
-    "shasum": "d09cd0e96efce7d85421591743c33d2efd8ed856",
-    "tarball": "https://registry.npmjs.org/bacnet/-/bacnet-0.0.13.tgz"
-  },
-  "gitHead": "216c2f7f57fa63fd520173dad53d21ae32de9837",
-  "gypfile": true,
-  "main": "bacnet.js",
-  "maintainers": [
-    {
-      "name": "platy",
-      "email": "mpbush@gmail.com"
-    }
-  ],
-  "name": "bacnet",
-  "optionalDependencies": {},
-  "readme": "ERROR: No README data found!",
+  "devDependencies": {},
   "scripts": {
-    "build": "node-gyp build && npm test",
-    "build-debug": "node-gyp --debug build",
-    "clean": "node-gyp clean",
-    "configure": "node-gyp configure && npm run build",
-    "install": "node-gyp rebuild",
-    "prepublish": "standard && npm rebuild && npm test",
-    "rebuild": "node-gyp rebuild && npm test",
-    "style": "standard",
-    "test": "mocha spec",
-    "testOnly": "mocha"
+    "test": "echo \\\"Error: no test specified\\\" && exit 1"
   },
-  "standard": {
-    "ignore": [
-      "bacnet-stack"
-    ]
+  "repository": {
+    "type": "git",
+    "url": ""
   },
-  "version": "0.0.13"
+  "keywords": [
+    "node-red",
+    "analoginput",
+    "VEN"
+      
+  ],
+  "node-red": {
+    "nodes": {
+      "Bacnet": "BACnet.js"
+    }
+  },
+  "author": "Sumit Shrestha",
+  "license": "",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": ""
 }
