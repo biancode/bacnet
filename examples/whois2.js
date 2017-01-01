@@ -1,5 +1,3 @@
-'use strict'
-
 const deviceAddress = process.argv[2]
 const deviceIdMin   = process.argv[3]
 const deviceIdMax   = process.argv[4]

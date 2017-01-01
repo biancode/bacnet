@@ -24,15 +24,17 @@ function setupMethods (bacnetAddon, confirmedCallbacks) {
     return invokeId
   }
 
-  //this.closeQueue = bacnetAddon.closeQueue
-  //this.whois = bacnetAddon.whois
-  //this.isBound = bacnetAddon.isBound
+  this.closeQueue = bacnetAddon.closeQueue
+  this.whois = bacnetAddon.whois
+  this.isBound = bacnetAddon.isBound
+
   this.readProperty = function (deviceInstance, objectType, objectInstance, property, arrayIndex, callback) {
     if (!objectType) throw new TypeError('Expected an object type, got : ' + objectType)
     const invokeId = bacnetAddon.readProperty(deviceInstance, bacnet.objectTypeToNumber(objectType), objectInstance, bacnet.propertyKeyToNumber(property), arrayIndex)
     if (invokeId === 0) throw new Error('Invoking BACnet read failed')
     return addCallback(invokeId, callback)
   }
+
   this.writeProperty = function (deviceInstance, objectType, objectInstance, property, arrayIndex, value, priority, callback) {
     if (!objectType) throw new TypeError('Expected an object type, got : ' + objectType)
     if (value.constructor !== bacnet.BacnetValue) {
@@ -47,6 +49,7 @@ function setupMethods (bacnetAddon, confirmedCallbacks) {
     if (invokeId === 0) throw new Error('Invoking BACnet write failed')
     return addCallback(invokeId, callback)
   }
+
 }
 
 function setupHandlers (confirmedCallbacks) {
@@ -91,18 +94,7 @@ function flattenConfig (config) {
 
 util.inherits(BACnetInstance, EventEmitter)
 
-/**
- * {
- *   datalink: {
- *     iface: process.env.BACNET_INTERFACE,
- *     ip_port: process.env.BACNET_PORT || 0xBAC0
- *   },
- *   device: false,
- *   device_instance_id: 12
- * }
- * @param config
- * @returns {*|EventEmitter}
- */
+
 bacnet.init = function init (config) {
   return new BACnetInstance(config)
 }
