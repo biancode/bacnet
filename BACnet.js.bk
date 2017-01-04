@@ -2,17 +2,44 @@
 module.exports = function(RED) {
 	
 	var xpath   = require('xpath');
-	//var dom     = require('xmldom').DOMParser
+	// var dom  = require('xmldom').DOMParser;
 	var request = require('request');
-  var bacnet = require('bacnet');
+  var bacnet  = require('bacnet');
+
+  // Initialize BACnet with desired interface and port
+  const r = bacnet.init({
+    datalink: {
+      iface:   'wlan0',
+      ip_port: '0xBAC0'
+    },
+    device: false
+  });
+
+  // BACnet Read-Property service
+  function BACread (object_address, object_type, object_identifier, property_name){
+    console.log('Reading Property: ',  property_name);
+    r.readProperty(object_address, object_type, object_identifier, property_name, false, function (err, property){
+      if (err) throw console.log('BACnet Read Error!', err);
+      console.log('Value:', property.value);
+      // return property.value;
+      });
+  }
+
+  // BACnet Write-Property service
+  function BACwrite (object_address, object_type, object_identifier, property_name, property_value){
+    r.writeProperty(object_address, object_type, object_identifier, property_name, false, property_value, function (err) {
+      if (err) throw console.log('BACnet Write Error!', err);
+      else console.log('BACnet Write Successful!');
+    });
+  }
 
   // Code for Device object
   function device(config) {
-  
+    
     RED.nodes.createNode(this, config);
-
+    
     var node = this;
-
+    
     const object_address                  = config.object_address;
     const object_name                     = config.object_name;
     const object_identifier               = config.object_identifier;
@@ -47,94 +74,39 @@ module.exports = function(RED) {
     const max_master                      = config.max_master;
     const max_info_frames                 = config.max_info_frames;
     
-    const property_name  = 'Location';
-    const property_value = 'India';
+    const property_name  = 'object-list';
+    const property_value = 'Germany';
 
     // node.status({fill:"green",shape:"dot",text:"Requesting"});
 
-    // Initialize BACnet 
-    const r = bacnet.init({
-      datalink: {
-        iface:   'wlan0',
-        ip_port: '0xBAC0'
-      },
-      device: false
-    });
-
-     // BACnet adddress resolution
-     function withAddressOrId (addressOrId, callback) {
-       if (addressOrId.match(/^\d+$/)) { // integer - should be a device Id so we have to do a whois
-         console.log('doing whois for ' + addressOrId);
-         console.log('doing whois for ');
-         r.whois(Number(addressOrId));
-         r.on('iam', 
-           function (iam) {
-             console.log('iam: ', iam);
-             callback(Number(addressOrId));
-         })
-       } 
-       else { // something else - should be an address so we dont need to do a whois
-         console.log('automatic: ', addressOrId);
-         callback(addressOrId);
-       }
-     }
-
-     // BACnet type conversion
-     function objectIdToString (objectId) {
-       console.log('To Object: ', objectId.type);
-       console.log(bacnet.objectTypeToString(objectId.type) + '/' + objectId.instance)
-       return bacnet.objectTypeToString(objectId.type) + '/' + objectId.instance 
-     }
-
-    // BACnet Read-Property service
-    // function BACread (object_address, addressOrId, object_type, object_identifier, property_name) {
-      console.log('Reading Property: ',  property_name);
-       withAddressOrId(object_address, function (addressOrId) {
-        r.readProperty(addressOrId, object_type, object_identifier, property_name, false, function (err, property) {
-          if (err) throw console.log('Error', err);
-          // console.log('Received property /', objectIdToString(property.object), '/', bacnet.propertyKeyToString(property.property));
-          console.log('Received from:', bacnet.objectTypeToString(property.object.type), 'with Instance:', bacnet.objectTypeToString(property.object.instance));
-          console.log('Property:', bacnet.propertyKeyToString(property.property), 'Value: ', property.value);
-          return property.value;
-          });
-      });
-    //}
-
-    // // BACnet Write-Property service
-    // function BACwrite () {
-    //   withAddressOrId(object_address, function (addressOrId) {
-    //     r.writeProperty(addressOrId, object_type, object_identifier, property_name, false, property_value, function (err) {
-    //       if (err) console.log('Error', err);
-    //       else console.log('Success');
-    //     });
-    //   });
-    // }
-
-    console.log(' ');
-    console.log('Date: ', new Date().toDateString());
-    console.log(' ');
-    console.log('Conected to...');
+    console.log('\n Date: ', new Date().toDateString());
+    console.log('\nConected to...');
     console.log('object_address:    ', object_address);
     console.log('object_name:       ', object_name);
     console.log('object_type:       ', object_type);
-    console.log('object_identifier: ', object_identifier);
-    console.log(' ');
-
+    console.log('object_identifier: ', object_identifier, '\n');
+    
+    // variable to count number of requests
     var count = 0;
-
+    
     // Accept input to device object
     node.on('input', 
        function(msg) {
           count += 1;
-          console.log('input to device: ', msg.payload, 'count: ', count);
+          console.log('input to device: ', msg.payload);
+          // BACnet Read Property service
+          if (msg.payload == 'read'){
+            BACread (object_address, object_type, object_identifier, property_name);
+          }
+          // BACnet Write Property service
+          if (msg.payload == 'write'){
+            BACwrite (object_address, object_type, object_identifier, property_name, property_value);
+          }
           //node.send(msg);
        });
-
-    //property_value = BACread (object_address, addressOrId, object_type, object_identifier, property_name);
-    //console.log('read: ', property_value);
-
+        
     setTimeout(function () {}, 1000)
-
+    
   }
 
   RED.nodes.registerType("device", device);
@@ -142,9 +114,9 @@ module.exports = function(RED) {
 
   // Code for Analog Input object
   function analog_input(config) {
-
+    
     RED.nodes.createNode(this, config);
-
+    
     var node = this;
     
     const object_name       = config.object_name;
@@ -155,15 +127,29 @@ module.exports = function(RED) {
     const event_state       = config.event_state;
     const out_of_service    = config.out_of_service;
     const units             = config.units;
+    
+    var object_address = '141.219.245.136';
+    var property_name  = 'present-value';
 
-    var property_value = '';
+    console.log('\n analog_input: ');
+    console.log('object_address    : ', object_address);
+    console.log('object_type       : ', object_type);
+    console.log('object_identifier : ', object_identifier);
+    console.log('property_name     : ', property_name);
+
 
     node.on('input', 
-           function(msg) {
+            function(msg) {
               console.log('input to analog_input: ', msg.payload);
-              property_value = BACread();
-              msg.payload = property_value;
-              node.send(msg);
+              // BACnet Read Property service
+              if (msg.payload == 'read'){
+                BACread (object_address, object_type, object_identifier, property_name);
+              }
+              // BACnet Write Property service
+              if (msg.payload == 'write'){
+                console.log('Denied! Analog Input object does not have write access...');
+              }
+              //node.send(msg);
            });
   
   }
@@ -172,14 +158,35 @@ module.exports = function(RED) {
 
   // Code for Analog Output object
   function analog_output(config) {
-  
+    
     RED.nodes.createNode(this, config);
-
+    
     var node = this;
-
+        
+    const object_name       = config.object_name;
+    const object_identifier = config.object_identifier;
+    const object_type       = config.object_type;
+    const present_value     = config.present_value;
+    const status_flag       = config.status_flag;
+    const event_state       = config.event_state;
+    const out_of_service    = config.out_of_service;
+    const units             = config.units;
+    
+    var object_address = '141.219.245.136';
+    var property_name  = 'present-value';
+    var property_value = 27;
+    
     node.on('input', 
            function(msg) {
               console.log('input to analog_output: ', msg.payload);
+              // BACnet Read Property service
+              if (msg.payload == 'read'){
+                BACread (object_address, object_type, object_identifier, property_name);
+              }
+              // BACnet Write Property service
+              if (msg.payload == 'write'){
+                BACwrite (object_address, object_type, object_identifier, property_name, property_value);
+              }
               //node.send(msg);
            });
 

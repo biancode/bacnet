@@ -1,6 +1,6 @@
 const deviceAddress = process.argv[2]
-const deviceIdMin   = process.argv[3]
-const deviceIdMax   = process.argv[4]
+const deviceIdMin = process.argv[3]
+const deviceIdMax = process.argv[4]
 
 const bacnet = require('../bacnet.js')
 
@@ -19,3 +19,4 @@ r.on('iam', function (iam) {
 r.whois(deviceAddress, deviceIdMin, deviceIdMax)
 
 setTimeout(function () {}, 1000)
+
