@@ -152,6 +152,14 @@ bool addressOrBoundDeviceIdToC(Local<Value> value, unsigned * max_apdu, BACNET_A
     return true;
 }
 
+// timeSyncRemote 
+NAN_METHOD(timeSync) {
+  // invoke the TimeSync function
+  Send_TimeSync_Device();
+  // return
+  info.GetReturnValue().Set(Nan::New(true));
+}
+
 // readProperty(deviceId, objectType, objectId, property [, arrayIndex])
 NAN_METHOD(readProperty) {
     BACNET_ADDRESS dest = {};
@@ -169,12 +177,12 @@ NAN_METHOD(readProperty) {
 
     if (addressed) {
         int invoke_id = Send_Read_Property_Request_Address(
-            &dest,
-            max_apdu,
-            (BACNET_OBJECT_TYPE)object_type,
-            object_instance,
-            (BACNET_PROPERTY_ID)object_property,
-            array_index);
+				            &dest,
+				            max_apdu,
+				            (BACNET_OBJECT_TYPE)object_type,
+				            object_instance,
+				            (BACNET_PROPERTY_ID)object_property,
+				            array_index);
 
         info.GetReturnValue().Set(Nan::New(invoke_id));
     } else {

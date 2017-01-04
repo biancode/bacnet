@@ -14,6 +14,10 @@ function whois (mac, objectMin, objectMax) {
   this.send({method: 'whois', args: Array.from(arguments)})
 }
 
+function timeSync () {
+  this.send({method: 'timeSync', args: Array.from(arguments)})
+}
+
 function readProperty (device, objectType, objectInstance, propertyId, arrayIndex) {
   this.send({method: 'readProperty', args: Array.from(arguments)})
 }
@@ -27,6 +31,7 @@ exports.deviceProcess = function deviceProcess (config) {
   device.send(config || false) // initialises with no args
   device.exit = exit
   device.whois = whois
+  device.timeSync = timeSync
   device.readProperty = readProperty
   device.writeProperty = writeProperty
   device.once('message', function (message) {

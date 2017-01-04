@@ -19,6 +19,7 @@
         "src/BacnetValue.cc",
         "src/s_rp.c",
         "src/s_wp.c",
+        "src/s_ts.c",
         "src/init.c",
         "src/device.c",
         "src/listen.c",

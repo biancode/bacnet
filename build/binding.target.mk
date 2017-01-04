@@ -97,6 +97,7 @@ OBJS := \
 	$(obj).target/$(TARGET)/src/BacnetValue.o \
 	$(obj).target/$(TARGET)/src/s_rp.o \
 	$(obj).target/$(TARGET)/src/s_wp.o \
+	$(obj).target/$(TARGET)/src/s_ts.o \
 	$(obj).target/$(TARGET)/src/init.o \
 	$(obj).target/$(TARGET)/src/device.o \
 	$(obj).target/$(TARGET)/src/listen.o \
