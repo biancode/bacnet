@@ -28,7 +28,7 @@ module.exports = function(RED) {
   // BACnet Write-Property service
   function BACwrite (object_address, object_type, object_identifier, property_name, property_value){
     r.writeProperty(object_address, object_type, object_identifier, property_name, false, property_value, function (err) {
-      if (err) throw console.log('BACnet Write Error!', err);
+      if (err) throw console.log('BACnet Write Error!!', err);
       else console.log('BACnet Write Successful!');
     });
   }
@@ -74,8 +74,8 @@ module.exports = function(RED) {
     const max_master                      = config.max_master;
     const max_info_frames                 = config.max_info_frames;
     
-    const property_name  = 'object-list';
-    const property_value = 'Germany';
+    const property_name  = 'Location';
+    const property_value = 'India';
 
     // node.status({fill:"green",shape:"dot",text:"Requesting"});
 
@@ -130,13 +130,12 @@ module.exports = function(RED) {
     
     var object_address = '141.219.245.136';
     var property_name  = 'present-value';
-
+    
     console.log('\n analog_input: ');
     console.log('object_address    : ', object_address);
     console.log('object_type       : ', object_type);
     console.log('object_identifier : ', object_identifier);
     console.log('property_name     : ', property_name);
-
 
     node.on('input', 
             function(msg) {
@@ -151,11 +150,10 @@ module.exports = function(RED) {
               }
               //node.send(msg);
            });
-  
   }
-
+  
   RED.nodes.registerType("analog_input", analog_input);
-
+  
   // Code for Analog Output object
   function analog_output(config) {
     
@@ -175,6 +173,7 @@ module.exports = function(RED) {
     var object_address = '141.219.245.136';
     var property_name  = 'present-value';
     var property_value = 27;
+    var value = new bacnet.BacnetValue(property_value, BACNET_APPLICATION_TAG_REAL);
     
     node.on('input', 
            function(msg) {
@@ -185,7 +184,7 @@ module.exports = function(RED) {
               }
               // BACnet Write Property service
               if (msg.payload == 'write'){
-                BACwrite (object_address, object_type, object_identifier, property_name, property_value);
+                BACwrite (object_address, object_type, object_identifier, property_name, value);
               }
               //node.send(msg);
            });
@@ -193,4 +192,53 @@ module.exports = function(RED) {
   }
 
   RED.nodes.registerType("analog_output", analog_output);
+
+
+  // Code for Analog Input object
+  function analog_value(config) {
+    
+    RED.nodes.createNode(this, config);
+    
+    var node = this;
+
+    const object_name       = config.object_name;
+    const object_identifier = config.object_identifier;
+    const object_type       = config.object_type;
+    const present_value     = config.present_value;
+    const status_flag       = config.status_flag;
+    const event_state       = config.event_state;
+    const out_of_service    = config.out_of_service;
+    const units             = config.units;
+    const property_list     = config.property_list;
+
+    var object_address = '141.219.245.136';
+    var property_name  = 'present-value';
+    var property_value = 29;
+    var value = new bacnet.BacnetValue(property_value, BACNET_APPLICATION_TAG_REAL);
+
+    console.log('property_value: ', property_value, '\n' ,'value: ', value);
+
+    console.log('\n analog_value: ');
+    console.log('object_address    : ', object_address);
+    console.log('object_type       : ', object_type);
+    console.log('object_identifier : ', object_identifier);
+    console.log('property_name     : ', property_name);
+
+    node.on('input', 
+            function(msg) {
+              console.log('input to analog_value: ', msg.payload);
+              // BACnet Read Property service
+              if (msg.payload == 'read'){
+                BACread (object_address, object_type, object_identifier, property_name);
+              }
+              // BACnet Write Property service
+              if (msg.payload == 'write'){
+                BACwrite (object_address, object_type, object_identifier, property_name, value);
+              }
+              //node.send(msg);
+           });
+  }
+
+  RED.nodes.registerType("analog_value", analog_value);
+
 }

@@ -1,8 +1,10 @@
 const bacnet = require('../bacnet.js')
 const r = bacnet.init({
   datalink: {
-    iface: process.env.BACNET_INTERFACE,
-    ip_port: process.env.BACNET_PORT || 0xBAC0
+    // iface: process.env.BACNET_INTERFACE,
+    // ip_port: process.env.BACNET_PORT || 0xBAC0
+    iface: 'wlan0',
+    ip_port: '0xBAC0'
   },
   device: false
 })
