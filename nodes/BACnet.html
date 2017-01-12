@@ -1,0 +1,1517 @@
+<!-- BACnet -->
+
+
+<!-- ************************************************************************************ -->
+<!--Code for device-->
+<script type="text/x-red" data-template-name="device">
+
+    <div class="form-row">
+        <label for="node-input-object_address"><i class="icon-tag"></i> Object Address</label>
+        <input type="text" id="node-input-object_address" placeholder="Office 36 DD control">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-object_name"><i class="icon-tag"></i> Object Name</label>
+        <input type="text" id="node-input-object_name" placeholder="Office 36 DD control">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-object_identifier"><i class="icon-tag"></i> Object Identifier</label>
+        <input type="text" id="node-input-object_identifier" placeholder="Device #1076">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-object_type"><i class="icon-tag"></i> Object Type</label>
+        <input type="text" id="node-input-object_type" placeholder="Device">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-system_status"><i class="icon-tag"></i> System Status</label>
+        <input type="text" id="node-input-system_status" placeholder="Operational (plus others)">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-vendor_name"><i class="icon-tag"></i> Vendor Name</label>
+        <input type="text" id="node-input-vendor_name" placeholder="Alerton Technologies,Inc">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-vendor_identifier"><i class="icon-tag"></i> Vendor Identifier</label>
+        <input type="text" id="node-input-vendor_identifier" placeholder="Alerton">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-model_name"><i class="icon-tag"></i> Model Name</label>
+        <input type="text" id="node-input-model_name" placeholder="VAV-DD Controller">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-firmware_revision"><i class="icon-tag"></i> Firmware Revision</label>
+        <input type="number" id="node-input-firmware_revision" placeholder="1.0">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-application_software_version"><i class="icon-tag"></i> Application Software Version</label>
+        <input type="text" id="node-input-application_software_version" placeholder="Dual-Duct DDC">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-location"><i class="icon-tag"></i> Location</label>
+        <input type="text" id="node-input-location" placeholder="Office 36, Floor 3">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-description"><i class="icon-tag"></i> Description</label>
+        <input type="text" id="node-input-description" placeholder="(on network 5)">
+    </div>  
+    
+    <div class="form-row">
+        <label for="node-input-protocol_version"><i class="icon-tag"></i> Protocol Version</label>
+        <input type="number" id="node-input-protocol_version" placeholder="1(Bacnet Protocol Version)">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-protocol_conformance_class"><i class="icon-tag"></i> Protocol Conformance Class</label>
+        <input type="number" id="node-input-protocol_conformance_class" placeholder="2">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-protocol_services_supported"><i class="icon-tag"></i> Protocol Services Supported</label>
+        <input type="text" id="node-input-protocol_services_supported" placeholder="readProperty, writeProperty, atomicWriteFile,...">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-protocol_objecttype_supported"><i class="icon-tag"></i> Protocol Object Type Supported</label>
+        <input type="text" id="node-input-protocol_objecttype_supported" placeholder="Analog Input, Analog Output,...">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-object_list"><i class="icon-tag"></i> Object List</label>
+        <input type="text" id="node-input-object_list" placeholder="Analog Input #1, Analog Input #2, ...">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-max_apdu_length_supported"><i class="icon-tag"></i> Max APDU Length Supported</label>
+        <input type="number" id="node-input-max_apdu_length_supported" placeholder="50(bytes or characters)">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-segmentation_supported"><i class="icon-tag"></i> Segementation Supported</label>
+        <input type="text" id="node-input-segmentation_supported" placeholder="Yes/No">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-vt_classes_supported"><i class="icon-tag"></i> VT Classes Supported</label>
+        <input type="text" id="node-input-vt_classes_supported" placeholder="n/a">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-active_vt_sessions"><i class="icon-tag"></i> Active VT Sessions</label>
+        <input type="text" id="node-input-active_vt_sessions" placeholder="n/a">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-local_time"><i class="icon-tag"></i> Local Time</label>
+        <input type="text" id="node-input-local_time" placeholder="12:30:15.22">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-local_date"><i class="icon-tag"></i> Local Date</label>
+        <input type="text" id="node-input-local_date" placeholder="Tuesday, March 12, 1996">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-utc_offset"><i class="icon-tag"></i> UTC Offset</label>
+        <input type="text" id="node-input-utc_offset" placeholder="+480(minutes from GMT/UTM)">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-daylight_savings_status"><i class="icon-tag"></i> Daylight Saving Status</label>
+        <input type="text" id="node-input-daylight_savings_status" placeholder="False(not in effect)">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-apdu_segment_timeout"><i class="icon-tag"></i> APDU Segment Timeout</label>
+        <input type="text" id="node-input-apdu_segment_timeout" placeholder="n/a">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-apdu_timeout"><i class="icon-tag"></i> APDU Timeout(ms)</label>
+        <input type="number" id="node-input-apdu_timeout" placeholder="3000">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-apdu_retries"><i class="icon-tag"></i> Number of APDU Retries</label>
+        <input type="number" id="node-input-apdu_retries" placeholder="0">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-list_of_session_keys"><i class="icon-tag"></i> List of Session Keys</label>
+        <input type="text" id="node-input-list_of_session_keys" placeholder="n/a">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-time_synchronization_recipients"><i class="icon-tag"></i> Time Synchronization Recipients</label>
+        <input type="text" id="node-input-time_synchronization_recipients" placeholder="n/a">
+    </div>
+        
+    <div class="form-row">
+        <label for="node-input-max_master"><i class="icon-tag"></i> Max Master</label>
+        <input type="text" id="node-input-max_master" placeholder="n/a">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-max_info_frames"><i class="icon-tag"></i> Max Info Frames</label>
+        <input type="text" id="node-input-max_info_frames" placeholder="n/a">
+    </div>  
+    
+    <div class="form-row">
+        <label for="node-input-device_address_binding"><i class="icon-tag"></i> Device Address Binding</label>
+        <input type="text" id="node-input-device_address_binding" placeholder="None">
+    </div>
+    
+</script>
+    
+
+<script type="text/x-red" data-help-name="device">
+    <p>This is the bacnet object named Device.  </p>
+</script>
+
+
+<!-- Node for Device-->
+<script type="text/javascript">
+    RED.nodes.registerType('device',{
+        category: 'BACnet',
+        defaults: {
+        object_address: {value: "141.219.245.136"},
+        object_name: {value: "LG AC"},
+        object_identifier: {value: "260002"},
+        object_type: {value: "Device"},
+        system_status: {value: "Operational"},
+        vendor_name: {value: "LG"},
+        vendor_identifier: {value: ""},
+        model_name: {value: ""},
+        firmware_revision: {value: "1"},
+        application_software_version: {value: ""},
+        location: {value: "USA"},
+        description: {value: "Argonne N L"},
+        protocol_version: {value: "1"},
+        protocol_conformance_class: {value: ""},
+        protocol_services_supported: {value: ""},
+        protocol_objecttype_supported: {value: ""},
+        object_list: {value: "analog-input, analog-output, analog-value, binary-input, binary-output, binary-value, multistate-input, multistate-output"},
+        max_apdu_length_supported: {value: "1476"},
+        segmentation_supported: {value: ""},
+        vt_classes_supported: {value: ""},
+        active_vt_sessions: {value: ""},
+        local_time: {value: ""},
+        local_date: {value: ""},
+        utc_offset: {value: ""},
+        daylight_savings_status: {value: ""},
+        apdu_segment_timeout: {value: ""},
+        apdu_timeout: {value: "3000"},
+        apdu_retries: {value: ""},
+        list_of_session_keys: {value: ""},
+        time_synchronization_recipients: {value: ""},
+        max_master: {value: ""},
+        max_info_frames: {value: ""},
+        device_address_binding: {value: ""},                    
+    },
+    color:"#3FADB5",
+    inputs:1,
+    outputs:1,
+    icon: " light.png",
+    label: function() {
+        return this.name||"BACnet Device";
+        },
+    });
+
+</script>
+
+
+<!-- ************************************************************************************ -->
+<!-- Code for analog_input -->
+<script type="text/x-red" data-template-name="analog_input">
+
+    <div class="form-row">
+        <label for="node-input-object_name"><i class="icon-tag"></i> Object Name</label>
+        <input type="text" id="node-input-object_name" placeholder="AI 01">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-object_identifier"><i class="icon-tag"></i> Object Identifier</label>
+        <input type="text" id="node-input-object_identifier" placeholder="Analog Input #1">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-object_type"><i class="icon-tag"></i> Object Type</label>
+        <input type="text" id="node-input-object_type" placeholder="Analog Input">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-present_value"><i class="icon-tag"></i> Present Value</label>
+        <input type="text" id="node-input-present_value" placeholder="68.0">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-description"><i class="icon-tag"></i> Description</label>
+        <input type="text" id="node-input-description" placeholder="Outside Air Temperature">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-device_type"><i class="icon-tag"></i> Device Type</label>
+        <input type="text" id="node-input-device_type" placeholder="10K Thermistor">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-status_flag"><i class="icon-tag"></i>Status Flag</label>
+        <input type="text" id="node-input-status_flag" placeholder="In_Alarm, Fault, Overridden, Out_Of_Service">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-event_state"><i class="icon-tag"></i> Event State</label>
+        <input type="text" id="node-input-event_state" placeholder="Normal (plus various problem-reporting states)">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-reliability"><i class="icon-tag"></i> Reliability</label>
+        <input type="text" id="node-input-reliability" placeholder="No_Fault_Detected (plus various fault conditions)">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-out_of_service"><i class="icon-tag"></i> Out Of Service</label>
+        <input type="text" id="node-input-out_of_service" placeholder="Yes/No">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-update_interval"><i class="icon-tag"></i> Update Interval</label>
+        <input type="text" id="node-input-update_interval" placeholder="1.00(seconds)">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-units"><i class="icon-tag"></i> Units</label>
+        <input type="text" id="node-input-units" placeholder="Degrees-Fahrenheit">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-min_pres_value"><i class="icon-tag"></i> Min Present Value</label>
+        <input type="text" id="node-input-min_pres_value" placeholder="-100.0,minimum reliably read value">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-max_pres_value"><i class="icon-tag"></i> Max Present Value</label>
+        <input type="text" id="node-input-max_pres_value" placeholder="+300.0, maximum reliably read value">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-resolution"><i class="icon-tag"></i> Resolution</label>
+        <input type="text" id="node-input-resolution" placeholder="0.1">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-cov_increment"><i class="icon-tag"></i> COV Increment</label>
+        <input type="text" id="node-input-cov_increment" placeholder="Notify fi Present Value changes by increment : 0.5">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-time_delay"><i class="icon-tag"></i> Time Delay</label>
+        <input type="text" id="node-input-time_delay" placeholder="Seconds to wait before detecting out-of-range: 5">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-notification_class"><i class="icon-tag"></i> Notification Class</label>
+        <input type="text" id="node-input-notification_class" placeholder="Send COV notification to Notificaiton Class Object :2">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-high_limit"><i class="icon-tag"></i> High Limit</label>
+        <input type="text" id="node-input-high_limit" placeholder="+215.0, Upper normal range">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-low_limit"><i class="icon-tag"></i> Low Input</label>
+        <input type="text" id="node-input-low_limit" placeholder="-45.0, Lower normal range">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-deadband"><i class="icon-tag"></i> Deadband</label>
+        <input type="text" id="node-input-deadband" placeholder="0.1">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-limit_enable"><i class="icon-tag"></i> Limit Enable</label>
+        <input type="text" id="node-input-limit_enable" placeholder="Enable High-limit-reporting, Low-limit-reporting">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-event_enable"><i class="icon-tag"></i> Event Enable</label>
+        <input type="text" id="node-input-event_enable" placeholder="Enable To_Offnormal, To_Fault, To_Normal change reporting">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-acked_transitions"><i class="icon-tag"></i> Acked Transitions</label>
+        <input type="text" id="node-input-acked_transitions" placeholder="Flags indicating received acknowledgements for above changes">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-notify_type"><i class="icon-tag"></i> Notify Type</label>
+        <input type="text" id="node-input-notify_type" placeholder="Events or Alarms">
+    </div>
+    
+</script>
+
+<script type="text/x-red" data-help-name="analog_input">
+    <p>This is the bacnet object named Analog Input.  </p>
+</script>
+
+<!-- Node for Analog Input-->
+<script type="text/javascript">
+    RED.nodes.registerType('analog_input',{
+        category: 'BACnet',
+        defaults: {
+            object_name: {value: "AN0"},
+            object_identifier: {value: "0"},
+            object_type: {value: "analog_input"},
+            present_value: {value: "21"},
+            description: {value: "Temperature"},
+            device_type: {value: ""},
+            status_flag: {value: "Operational"},
+            event_state: {value: ""},
+            reliability: {value: ""},
+            out_of_service: {value: ""},
+            update_interval: {value: ""},
+            units: {value: "F"},         
+            min_pres_value: {value: ""},
+            max_pres_value: {value: ""},
+            resolution: {value: ""},
+            cov_increment: {value: ""},
+            time_delay: {value: ""},
+            notification_class: {value: ""},
+            high_limit: {value: ""},
+            low_limit: {value: ""},
+            deadband: {value: ""},
+            limit_enable: {value: ""},
+            event_enable: {value: ""},
+            acked_transitions: {value: ""},
+            notify_type: {value: ""},
+        },
+        color:"#87A980",
+        inputs:1,
+        outputs:1,
+        icon: "arrow-in.png",
+        label: function() {
+            return this.name||"Analog Input";
+        },
+    });
+
+</script>
+
+
+<!-- ************************************************************************************ -->
+<!-- Code for analog_output -->
+<script type="text/x-red" data-template-name="analog_output">
+
+    <div class="form-row">
+        <label for="node-input-object_name"><i class="icon-tag"></i> Object Name</label>
+        <input type="text" id="node-input-object_name" placeholder="AI 01">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-object_identifier"><i class="icon-tag"></i> Object Identifier</label>
+        <input type="text" id="node-input-object_identifier" placeholder="Analog Input #1">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-object_type"><i class="icon-tag"></i> Object Type</label>
+        <input type="text" id="node-input-object_type" placeholder="Analog Input">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-present_value"><i class="icon-tag"></i> Present Value</label>
+        <input type="text" id="node-input-present_value" placeholder="68.0">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-status_flag"><i class="icon-tag"></i>Status Flag</label>
+        <input type="text" id="node-input-status_flag" placeholder="In_Alarm, Fault, Overridden, Out_Of_Service">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-event_state"><i class="icon-tag"></i> Event State</label>
+        <input type="text" id="node-input-event_state" placeholder="Normal (plus various problem-reporting states)">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-out_of_service"><i class="icon-tag"></i> Out Of Service</label>
+        <input type="text" id="node-input-out_of_service" placeholder="Yes/No">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-units"><i class="icon-tag"></i> Units</label>
+        <input type="text" id="node-input-units" placeholder="Degrees-Fahrenheit">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-priority_array"><i class="icon-tag"></i> Priority Array</label>
+        <input type="text" id="node-input-priority_array" placeholder="">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-relinquish_default"><i class="icon-tag"></i> Relinquish Default</label>
+        <input type="text" id="node-input-relinquish_default" placeholder="">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-property_list"><i class="icon-tag"></i> Property List</label>
+        <input type="text" id="node-input-property_list" placeholder="">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-current_command_priority"><i class="icon-tag"></i> Current Command Priority</label>
+        <input type="text" id="node-input-current_command_priority" placeholder="">
+    </div>   
+    
+</script>
+
+<script type="text/x-red" data-help-name="analog_output">
+    <p>This is the bacnet object named Analog Output.  </p>
+</script>
+
+<!-- Node for Analog Output-->
+<script type="text/javascript">
+    RED.nodes.registerType('analog_output',{
+        category: 'BACnet',
+        defaults: {
+            object_name: {value: "AN0"},
+            object_identifier: {value: "0"},
+            object_type: {value: "analog-output"},
+            present_value: {value: "24"},
+            status_flag: {value: "Operational"},
+            event_state: {value: ""},
+            out_of_service: {value: ""},
+            units: {value: "F"},
+            priority_array: {value: ""},
+            relinquish_default: {value: ""},
+            property_list: {value: ""},
+            current_command_priority: {value: ""},         
+        },
+        color:"#E9967A",
+        inputs:1,
+        outputs:1,
+        icon: "arrow-in.png",
+        label: function() {
+            return this.name||"Analog Output";
+        },
+    });
+
+</script>
+
+
+<!-- ************************************************************************************ -->
+<!-- Code for analog_value -->
+<script type="text/x-red" data-template-name="analog_value">
+
+    <div class="form-row">
+        <label for="node-input-object_name"><i class="icon-tag"></i> Object Name</label>
+        <input type="text" id="node-input-object_name" placeholder="AI 01">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-object_identifier"><i class="icon-tag"></i> Object Identifier</label>
+        <input type="text" id="node-input-object_identifier" placeholder="Analog Input #1">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-object_type"><i class="icon-tag"></i> Object Type</label>
+        <input type="text" id="node-input-object_type" placeholder="Analog Input">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-present_value"><i class="icon-tag"></i> Present Value</label>
+        <input type="text" id="node-input-present_value" placeholder="68.0">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-status_flag"><i class="icon-tag"></i>Status Flag</label>
+        <input type="text" id="node-input-status_flag" placeholder="In_Alarm, Fault, Overridden, Out_Of_Service">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-event_state"><i class="icon-tag"></i> Event State</label>
+        <input type="text" id="node-input-event_state" placeholder="Normal (plus various problem-reporting states)">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-out_of_service"><i class="icon-tag"></i> Out Of Service</label>
+        <input type="text" id="node-input-out_of_service" placeholder="Yes/No">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-units"><i class="icon-tag"></i> Units</label>
+        <input type="text" id="node-input-units" placeholder="Degrees-Fahrenheit">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-property_list"><i class="icon-tag"></i> Property List</label>
+        <input type="text" id="node-input-property_list" placeholder="">
+    </div>
+
+</script>
+
+<script type="text/x-red" data-help-name="analog_value">
+    <p>This is the bacnet object named Analog Value.  </p>
+</script>
+
+<!-- Node for Analog Value-->
+<script type="text/javascript">
+    RED.nodes.registerType('analog_value',{
+        category: 'BACnet',
+        defaults: {
+            object_name: {value: ""},
+            object_identifier: {value: ""},
+            object_type: {value: ""},
+            present_value: {value: "23"},
+            status_flag: {value: ""},
+            event_state: {value: ""},
+            out_of_service: {value: ""},
+            units: {value: "F"},
+            property_list: {value: ""},
+        },
+        color:"#FFCC66",
+        inputs:1,
+        outputs:1,
+        icon: "arrow-in.png",
+        label: function() {
+            return this.name||"Analog Value";
+        },
+    });
+
+</script>
+
+
+
+<!-- ************************************************************************************ -->
+<!-- Code for binary_input -->
+<script type="text/x-red" data-template-name="binary_input">
+
+    <div class="form-row">
+        <label for="node-input-object_name"><i class="icon-tag"></i> Object Name</label>
+        <input type="text" id="node-input-object_name" placeholder="AI 01">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-object_identifier"><i class="icon-tag"></i> Object Identifier</label>
+        <input type="text" id="node-input-object_identifier" placeholder="Binary Input #1">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-object_type"><i class="icon-tag"></i> Object Type</label>
+        <input type="text" id="node-input-object_type" placeholder="Binary Input">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-present_value"><i class="icon-tag"></i> Present Value</label>
+        <input type="text" id="node-input-present_value" placeholder="68.0">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-status_flag"><i class="icon-tag"></i>Status Flag</label>
+        <input type="text" id="node-input-status_flag" placeholder="In_Alarm, Fault, Overridden, Out_Of_Service">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-event_state"><i class="icon-tag"></i> Event State</label>
+        <input type="text" id="node-input-event_state" placeholder="Normal (plus various problem-reporting states)">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-out_of_service"><i class="icon-tag"></i> Out Of Service</label>
+        <input type="text" id="node-input-out_of_service" placeholder="Yes/No">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-polarity"><i class="icon-tag"></i> Polarity</label>
+        <input type="text" id="node-input-polarity" placeholder="Degrees-Fahrenheit">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-property_list"><i class="icon-tag"></i> Property List</label>
+        <input type="text" id="node-input-property_list" placeholder="">
+    </div>
+
+</script>
+
+<script type="text/x-red" data-help-name="binary_input">
+    <p>This is the bacnet object named Binary Input.  </p>
+</script>
+
+<!-- Node for Binary Input-->
+<script type="text/javascript">
+    RED.nodes.registerType('binary_input',{
+        category: 'BACnet',
+        defaults: {
+            object_name: {value: "BI0"},
+            object_identifier: {value: "0"},
+            object_type: {value: "binary-input"},
+            present_value: {value: "0101"},
+            status_flag: {value: ""},
+            event_state: {value: ""},
+            out_of_service: {value: ""},
+            polarity: {value: ""},
+            property_list: {value: ""},
+        },
+        color:"#87A980",
+        inputs:1,
+        outputs:1,
+        icon: "arrow-in.png",
+        label: function() {
+            return this.name||"Binary Input";
+        },
+    });
+
+</script>
+
+
+<!-- ************************************************************************************ -->
+<!-- Code for binary_output -->
+<script type="text/x-red" data-template-name="binary_output">
+
+    <div class="form-row">
+        <label for="node-input-object_name"><i class="icon-tag"></i> Object Name</label>
+        <input type="text" id="node-input-object_name" placeholder="AI 01">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-object_identifier"><i class="icon-tag"></i> Object Identifier</label>
+        <input type="text" id="node-input-object_identifier" placeholder="Binary Output #1">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-object_type"><i class="icon-tag"></i> Object Type</label>
+        <input type="text" id="node-input-object_type" placeholder="Binary Output">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-present_value"><i class="icon-tag"></i> Present Value</label>
+        <input type="text" id="node-input-present_value" placeholder="68.0">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-status_flag"><i class="icon-tag"></i>Status Flag</label>
+        <input type="text" id="node-input-status_flag" placeholder="In_Alarm, Fault, Overridden, Out_Of_Service">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-event_state"><i class="icon-tag"></i> Event State</label>
+        <input type="text" id="node-input-event_state" placeholder="Normal (plus various problem-reporting states)">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-out_of_service"><i class="icon-tag"></i> Out Of Service</label>
+        <input type="text" id="node-input-out_of_service" placeholder="Yes/No">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-polarity"><i class="icon-tag"></i> Polarity</label>
+        <input type="text" id="node-input-polarity" placeholder="">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-priority_array"><i class="icon-tag"></i> Priority Array</label>
+        <input type="text" id="node-input-priority_array" placeholder="">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-relinquish_default"><i class="icon-tag"></i> Relinquish Default</label>
+        <input type="text" id="node-input-relinquish_default" placeholder="">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-property_list"><i class="icon-tag"></i> Property List</label>
+        <input type="text" id="node-input-property_list" placeholder="">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-current_command_priority"><i class="icon-tag"></i> Current Command Priority</label>
+        <input type="text" id="node-input-current_command_priority" placeholder="">
+    </div>   
+    
+</script>
+
+<script type="text/x-red" data-help-name="binary_output">
+    <p>This is the bacnet object named Binary Output.  </p>
+</script>
+
+<!-- Node for Binary Output-->
+<script type="text/javascript">
+    RED.nodes.registerType('binary_output',{
+        category: 'BACnet',
+        defaults: {
+            object_name: {value: "BO0"},
+            object_identifier: {value: "0"},
+            object_type: {value: "binary-output"},
+            present_value: {value: "0000"},
+            status_flag: {value: ""},
+            event_state: {value: ""},
+            out_of_service: {value: ""},
+            polarity: {value: ""},
+            priority_array: {value: ""},
+            relinquish_default: {value: ""},
+            property_list: {value: ""},
+            current_command_priority: {value: ""},         
+        },
+        color:"#E9967A",
+        inputs:1,
+        outputs:1,
+        icon: "arrow-in.png",
+        label: function() {
+            return this.name||"Binary Output";
+        },
+    });
+
+</script>
+
+
+<!-- ************************************************************************************ -->
+<!-- Code for binary_value -->
+<script type="text/x-red" data-template-name="binary_value">
+
+    <div class="form-row">
+        <label for="node-input-object_name"><i class="icon-tag"></i> Object Name</label>
+        <input type="text" id="node-input-object_name" placeholder="AI 01">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-object_identifier"><i class="icon-tag"></i> Object Identifier</label>
+        <input type="text" id="node-input-object_identifier" placeholder="Binary Input #1">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-object_type"><i class="icon-tag"></i> Object Type</label>
+        <input type="text" id="node-input-object_type" placeholder="Binary Input">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-present_value"><i class="icon-tag"></i> Present Value</label>
+        <input type="text" id="node-input-present_value" placeholder="68.0">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-status_flag"><i class="icon-tag"></i>Status Flag</label>
+        <input type="text" id="node-input-status_flag" placeholder="In_Alarm, Fault, Overridden, Out_Of_Service">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-event_state"><i class="icon-tag"></i> Event State</label>
+        <input type="text" id="node-input-event_state" placeholder="Normal (plus various problem-reporting states)">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-out_of_service"><i class="icon-tag"></i> Out Of Service</label>
+        <input type="text" id="node-input-out_of_service" placeholder="Yes/No">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-property_list"><i class="icon-tag"></i> Property List</label>
+        <input type="text" id="node-input-property_list" placeholder="">
+    </div>
+
+</script>
+
+<script type="text/x-red" data-help-name="binary_value">
+    <p>This is the bacnet object named Binary Value.  </p>
+</script>
+
+<!-- Node for Binary Value-->
+<script type="text/javascript">
+    RED.nodes.registerType('binary_value',{
+        category: 'BACnet',
+        defaults: {
+            object_name: {value: "BV0"},
+            object_identifier: {value: "0"},
+            object_type: {value: "binary-value"},
+            present_value: {value: "0000"},
+            status_flag: {value: ""},
+            event_state: {value: ""},
+            out_of_service: {value: ""},
+            property_list: {value: ""},
+        },
+        color:"#FFCC66",
+        inputs:1,
+        outputs:1,
+        icon: "arrow-in.png",
+        label: function() {
+            return this.name||"Binary Value";
+        },
+    });
+
+</script>
+
+
+<!-- ************************************************************************************ -->
+<!-- Code for Multi-state Input -->
+<script type="text/x-red" data-template-name="multistate_input">
+
+    <div class="form-row">
+        <label for="node-input-object_name"><i class="icon-tag"></i> Object Name</label>
+        <input type="text" id="node-input-object_name" placeholder="AI 01">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-object_identifier"><i class="icon-tag"></i> Object Identifier</label>
+        <input type="text" id="node-input-object_identifier" placeholder="Multistate Input #1">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-object_type"><i class="icon-tag"></i> Object Type</label>
+        <input type="text" id="node-input-object_type" placeholder="Multistate Input">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-present_value"><i class="icon-tag"></i> Present Value</label>
+        <input type="text" id="node-input-present_value" placeholder="68.0">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-status_flag"><i class="icon-tag"></i>Status Flag</label>
+        <input type="text" id="node-input-status_flag" placeholder="In_Alarm, Fault, Overridden, Out_Of_Service">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-event_state"><i class="icon-tag"></i> Event State</label>
+        <input type="text" id="node-input-event_state" placeholder="Normal (plus various problem-reporting states)">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-out_of_service"><i class="icon-tag"></i> Out Of Service</label>
+        <input type="text" id="node-input-out_of_service" placeholder="Yes/No">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-number_of_states"><i class="icon-tag"></i> Number of States</label>
+        <input type="text" id="node-input-number_of_states" placeholder="">
+    </div>
+
+     <div class="form-row">
+        <label for="node-input-property_list"><i class="icon-tag"></i> Property List</label>
+        <input type="text" id="node-input-property_list" placeholder="">
+    </div>
+
+</script>
+
+<script type="text/x-red" data-help-name="multistate_input">
+    <p>This is the bacnet object named Multistate Input.  </p>
+</script>
+
+<!-- Node for Multistate Input-->
+<script type="text/javascript">
+    RED.nodes.registerType('multistate_input',{
+        category: 'BACnet',
+        defaults: {
+            object_name: {value: "MI0"},
+            object_identifier: {value: "0"},
+            object_type: {value: "multistate-input"},
+            present_value: {value: ""},
+            status_flag: {value: ""},
+            event_state: {value: ""},
+            out_of_service: {value: ""},
+            number_of_states: {value: ""},
+            property_list: {value: ""},
+        },
+        color:"#87A980",
+        inputs:1,
+        outputs:1,
+        icon: "arrow-in.png",
+        label: function() {
+            return this.name||"Multistate Input";
+        },
+    });
+
+</script>
+
+
+<!-- ************************************************************************************ -->
+<!-- Code for Multistate Output -->
+<script type="text/x-red" data-template-name="multistate_output">
+
+    <div class="form-row">
+        <label for="node-input-object_name"><i class="icon-tag"></i> Object Name</label>
+        <input type="text" id="node-input-object_name" placeholder="AI 01">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-object_identifier"><i class="icon-tag"></i> Object Identifier</label>
+        <input type="text" id="node-input-object_identifier" placeholder="Multistate Output #1">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-object_type"><i class="icon-tag"></i> Object Type</label>
+        <input type="text" id="node-input-object_type" placeholder="Multistate Output">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-present_value"><i class="icon-tag"></i> Present Value</label>
+        <input type="text" id="node-input-present_value" placeholder="68.0">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-status_flag"><i class="icon-tag"></i>Status Flag</label>
+        <input type="text" id="node-input-status_flag" placeholder="In_Alarm, Fault, Overridden, Out_Of_Service">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-event_state"><i class="icon-tag"></i> Event State</label>
+        <input type="text" id="node-input-event_state" placeholder="Normal (plus various problem-reporting states)">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-out_of_service"><i class="icon-tag"></i> Out Of Service</label>
+        <input type="text" id="node-input-out_of_service" placeholder="Yes/No">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-number_of_states"><i class="icon-tag"></i> Number of States</label>
+        <input type="text" id="node-input-number_of_states" placeholder="">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-priority_array"><i class="icon-tag"></i> Priority Array</label>
+        <input type="text" id="node-input-priority_array" placeholder="">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-relinquish_default"><i class="icon-tag"></i> Relinquish Default</label>
+        <input type="text" id="node-input-relinquish_default" placeholder="">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-property_list"><i class="icon-tag"></i> Property List</label>
+        <input type="text" id="node-input-property_list" placeholder="">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-current_command_priority"><i class="icon-tag"></i> Current Command Priority</label>
+        <input type="text" id="node-input-current_command_priority" placeholder="">
+    </div>   
+    
+</script>
+
+<script type="text/x-red" data-help-name="multistate_output">
+    <p>This is the bacnet object named Multistate Output.  </p>
+</script>
+
+<!-- Node for Multistate Output-->
+<script type="text/javascript">
+    RED.nodes.registerType('multistate_output',{
+        category: 'BACnet',
+        defaults: {
+            object_name: {value: "MO0"},
+            object_identifier: {value: "0"},
+            object_type: {value: "multi-state-output"},
+            present_value: {value: ""},
+            status_flag: {value: ""},
+            event_state: {value: ""},
+            out_of_service: {value: ""},
+            number_of_states: {value: ""},
+            priority_array: {value: ""},
+            relinquish_default: {value: ""},
+            property_list: {value: ""},
+            current_command_priority: {value: ""},         
+        },
+        color:"#E9967A",
+        inputs:1,
+        outputs:1,
+        icon: "arrow-in.png",
+        label: function() {
+            return this.name||"Multistate Output";
+        },
+    });
+
+</script>
+
+<!-- BACnet Inject Node-->
+<script type="text/x-red" data-template-name="ServiceInject">
+    <div class="form-row">
+        <label for="node-input-payload"><i class="fa fa-envelope"></i> Service </label>
+        <input type="text" id="node-input-payload" style="width:70%">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-topic"><i class="fa fa-tasks"></i> Object Address </label>
+        <input type="text" id="node-input-topic">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-object_type"><i class="fa fa-tasks"></i> Object Type </label>
+        <input type="text" id="node-input-object_type">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-property_name"><i class="fa fa-tasks"></i> Property Name </label>
+        <input type="text" id="node-input-property_name">
+    </div>  
+
+    <div class="form-row">
+        <label for="node-input-present_value"><i class="fa fa-tasks"></i> Present Value </label>
+        <input type="text" id="node-input-present_value">
+    </div>
+
+    <div class="form-row">
+        <label for=""><i class="fa fa-repeat"></i> <span data-i18n="inject.label.repeat"></span></label>
+        <select id="inject-time-type-select">
+            <option value="none" data-i18n="inject.none"></option>
+            <option value="interval" data-i18n="inject.interval"></option>
+            <option value="interval-time" data-i18n="inject.interval-time"></option>
+            <option value="time" data-i18n="inject.time"></option>
+        </select>
+        <input type="hidden" id="node-input-repeat">
+        <input type="hidden" id="node-input-crontab">
+    </div>
+
+    <div class="form-row inject-time-row hidden" id="inject-time-row-interval">
+        <span data-i18n="inject.every"></span>
+        <input id="inject-time-interval-count" class="inject-time-count" value="1"></input>
+        <select style="width: 100px" id="inject-time-interval-units">
+            <option value="s" data-i18n="inject.seconds"></option>
+            <option value="m" data-i18n="inject.minutes"></option>
+            <option value="h" data-i18n="inject.hours"></option>
+        </select><br/>
+    </div>
+
+    <div class="form-row inject-time-row hidden" id="inject-time-row-interval-time">
+        <span data-i18n="inject.every"></span> <select style="width:90px" id="inject-time-interval-time-units" class="inject-time-int-count" value="1">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="10">10</option>
+            <option value="12">12</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="0">60</option>
+        </select> <span data-i18n="inject.minutes"></span><br/>
+        <span data-i18n="inject.between"></span> <select id="inject-time-interval-time-start" class="inject-time-times"></select>
+        <span data-i18n="inject.and"></span> <select id="inject-time-interval-time-end" class="inject-time-times"></select><br/>
+        <div id="inject-time-interval-time-days" class="inject-time-days">
+            <div style="display: inline-block; vertical-align: top;margin-right:5px;" data-i18n="inject.on">on</div>
+            <div style="display:inline-block;">
+                <div>
+                    <label><input type='checkbox' checked value='1'/> <span data-i18n="inject.days.0"></span></label>
+                    <label><input type='checkbox' checked value='2'/> <span data-i18n="inject.days.1"></span></label>
+                    <label><input type='checkbox' checked value='3'/> <span data-i18n="inject.days.2"></span></label>
+                </div>
+                <div>
+                    <label><input type='checkbox' checked value='4'/> <span data-i18n="inject.days.3"></span></label>
+                    <label><input type='checkbox' checked value='5'/> <span data-i18n="inject.days.4"></span></label>
+                    <label><input type='checkbox' checked value='6'/> <span data-i18n="inject.days.5"></span></label>
+                </div>
+                <div>
+                    <label><input type='checkbox' checked value='0'/> <span data-i18n="inject.days.6"></span></label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row inject-time-row hidden" id="inject-time-row-time">
+        <span data-i18n="inject.at"></span> <input id="inject-time-time" value="12:00"></input><br/>
+        <div id="inject-time-time-days" class="inject-time-days">
+            <div style="display: inline-block; vertical-align: top;margin-right: 5px;">on </div>
+            <div style="display:inline-block;">
+                <div>
+                    <label><input type='checkbox' checked value='1'/> <span data-i18n="inject.days.0"></span></label>
+                    <label><input type='checkbox' checked value='2'/> <span data-i18n="inject.days.1"></span></label>
+                    <label><input type='checkbox' checked value='3'/> <span data-i18n="inject.days.2"></span></label>
+                </div>
+                <div>
+                    <label><input type='checkbox' checked value='4'/> <span data-i18n="inject.days.3"></span></label>
+                    <label><input type='checkbox' checked value='5'/> <span data-i18n="inject.days.4"></span></label>
+                    <label><input type='checkbox' checked value='6'/> <span data-i18n="inject.days.5"></span></label>
+                </div>
+                <div>
+                    <label><input type='checkbox' checked value='0'/> <span data-i18n="inject.days.6"></span></label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row" id="node-once">
+        <label>&nbsp;</label>
+        <input type="checkbox" id="node-input-once" style="display: inline-block; width: auto; vertical-align: top;">
+        <label for="node-input-once" style="width: 70%;" data-i18n="inject.onstart"></label>
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n="common.label.name"></span></label>
+        <input type="text" id="node-input-name" data-i18n="[placeholder]common.label.name">
+    </div>
+
+    <div class="form-tips" data-i18n="[html]inject.tip"></div>
+</script>
+<style>
+    .inject-time-row {
+        padding-left: 110px;
+    }
+    .inject-time-row select {
+        margin: 3px 0;
+    }
+    .inject-time-days label {
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        vertical-align: top;
+        width: 100px;
+    }
+     .inject-time-days input {
+         width: auto;
+     }
+    .inject-time-times {
+        width: 90px;
+    }
+    #inject-time-time {
+        width: 75px;
+    }
+    .inject-time-count {
+        width: 40px !important;
+    }
+</style>
+<script type="text/x-red" data-help-name="inject">
+    <p>Pressing the button on the left side of the node allows a message on a topic
+       to be injected into the flow.</p>
+    <p>The payload defaults to the current time in millisecs since 1970, but can
+       also be set to various other javascript types.</p>
+    <p>The repeat function allows the payload to be sent on the required schedule.</p>
+    <p>The <i>inject once at start</i> option actually waits a short interval before firing
+       to give other nodes a chance to instantiate properly.</p>
+    <p>The <i>Flow</i> and <i>Global</i> options allow one to inject a flow or global
+        context value.
+    </p>
+    <p><b>Note: </b>"Interval between times" and "at a specific time" uses cron.
+       This means that 20 minutes will be at the next hour, 20 minutes past and
+       40 minutes past - not in 20 minutes time. If you want every 20 minutes
+       from now - use the "interval" option.</p>
+    <p><b>Note: </b>all string input is escaped. To add a carriage return to a string
+    you should use a following function.</p>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('ServiceInject',{
+        category: 'BACnet',
+        color:"#a6bbcf",
+        defaults: {
+            object_address: {value:"141.219.245.136"},
+            object_type: {value:""},
+            property_name: {value:""},
+            present_value: {value:""},
+            name: {value:""},
+            topic: {value:""},
+            payload: {value:""},
+            repeat: {value:""},
+            crontab: {value:""},
+            once: {value:false}
+        },
+        inputs:0,
+        outputs:1,
+        icon: "inject.png",
+        label: function() {
+            var suffix = "";
+            // if fire once then add small indication
+            if (this.once) {
+                suffix = " ¹";
+            }
+            // but replace with repeat one if set to repeat
+            if (this.repeat || this.crontab) {
+                suffix = " ↻";
+            }
+            if (this.name) {
+                return this.name+suffix;
+            } 
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        },
+        oneditprepare: function() {
+           
+
+            $("#inject-time-type-select").change(function() {
+                $("#node-input-crontab").val('');
+                var id = $("#inject-time-type-select").val();
+                $(".inject-time-row").hide();
+                $("#inject-time-row-"+id).show();
+                if ((id == "none") || (id == "interval")) {
+                    $("#node-once").show();
+                }
+                else {
+                    $("#node-once").hide();
+                    $("#node-input-once").prop('checked', false);
+                }
+            });
+
+            $(".inject-time-times").each(function() {
+                for (var i=0;i<24;i++) {
+                    var l = (i<10?"0":"")+i+":00";
+                    $(this).append($("<option></option>").val(i).text(l));
+                }
+            });
+            $("<option></option>").val(24).text("00:00").appendTo("#inject-time-interval-time-end");
+            $("#inject-time-interval-time-start").change(function() {
+                var start = Number($("#inject-time-interval-time-start").val());
+                var end = Number($("#inject-time-interval-time-end").val());
+                $("#inject-time-interval-time-end option").remove();
+                for (var i=start+1;i<25;i++) {
+                    var l = (i<10?"0":"")+i+":00";
+                    if (i==24) {
+                        l = "00:00";
+                    }
+                    var opt = $("<option></option>").val(i).text(l).appendTo("#inject-time-interval-time-end");
+                    if (i === end) {
+                        opt.attr("selected","selected");
+                    }
+                }
+            });
+
+            $(".inject-time-count").spinner({
+                //max:60,
+                min:1
+            });
+
+            $.widget( "ui.injecttimespinner", $.ui.spinner, {
+                options: {
+                    // seconds
+                    step: 60 * 1000,
+                    // hours
+                    page: 60
+                },
+                _parse: function( value ) {
+                    if ( typeof value === "string" ) {
+                        // already a timestamp
+                        if ( Number( value ) == value ) {
+                            return Number( value );
+                        }
+                        var p = value.split(":");
+                        var offset = new Date().getTimezoneOffset();
+                        return ((Number(p[0])*60)+Number(p[1])+offset)*60*1000;
+                    }
+                    return value;
+                },
+                _format: function( value ) {
+                    var d = new Date(value);
+                    var h = d.getHours();
+                    var m = d.getMinutes();
+                    return ((h < 10)?"0":"")+h+":"+((m < 10)?"0":"")+m;
+                }
+            });
+
+            $("#inject-time-time").injecttimespinner();
+
+            var repeattype = "none";
+            if (this.repeat != "" && this.repeat != 0) {
+                repeattype = "interval";
+                var r = "s";
+                var c = this.repeat;
+                if (this.repeat % 60 === 0) { r = "m"; c = c/60; }
+                if (this.repeat % 1440 === 0) { r = "h"; c = c/60; }
+                $("#inject-time-interval-count").val(c);
+                $("#inject-time-interval-units").val(r);
+                $("#inject-time-interval-days").prop("disabled","disabled");
+            } else if (this.crontab) {
+                var cronparts = this.crontab.split(" ");
+                var days = cronparts[4];
+                if (!isNaN(cronparts[0]) && !isNaN(cronparts[1])) {
+                    repeattype = "time";
+                    // Fixed time
+                    var time = cronparts[1]+":"+cronparts[0];
+                    $("#inject-time-time").val(time);
+                    $("#inject-time-type-select").val("s");
+                    if (days == "*") {
+                        $("#inject-time-time-days input[type=checkbox]").prop("checked",true);
+                    } else {
+                        $("#inject-time-time-days input[type=checkbox]").removeAttr("checked");
+                        days.split(",").forEach(function(v) {
+                            $("#inject-time-time-days [value=" + v + "]").prop("checked", true);
+                        });
+                    }
+                } else {
+                    repeattype = "interval-time";
+                    // interval - time period
+                    var minutes = cronparts[0].slice(2);
+                    if (minutes === "") { minutes = "0"; }
+                    $("#inject-time-interval-time-units").val(minutes);
+                    if (days == "*") {
+                        $("#inject-time-interval-time-days input[type=checkbox]").prop("checked",true);
+                    } else {
+                        $("#inject-time-interval-time-days input[type=checkbox]").removeAttr("checked");
+                        days.split(",").forEach(function(v) {
+                            $("#inject-time-interval-time-days [value=" + v + "]").prop("checked", true);
+                        });
+                    }
+                    var time = cronparts[1];
+                    var timeparts = time.split(",");
+                    var start;
+                    var end;
+                    if (timeparts.length == 1) {
+                        // 0 or 0-10
+                        var hours = timeparts[0].split("-");
+                        if (hours.length == 1) {
+                            if (hours[0] === "") {
+                                start = "0";
+                                end = "0";
+                            }
+                            else {
+                                start = hours[0];
+                                end = Number(hours[0])+1;
+                            }
+                        } else {
+                            start = hours[0];
+                            end = Number(hours[1])+1;
+                        }
+                    } else {
+                        // 23,0 or 17-23,0-10 or 23,0-2 or 17-23,0
+                        var startparts = timeparts[0].split("-");
+                        start = startparts[0];
+
+                        var endparts = timeparts[1].split("-");
+                        if (endparts.length == 1) {
+                            end = Number(endparts[0])+1;
+                        } else {
+                            end = Number(endparts[1])+1;
+                        }
+                    }
+                    $("#inject-time-interval-time-end").val(end);
+                    $("#inject-time-interval-time-start").val(start);
+
+                }
+            } else {
+                $("#inject-time-type-select").val("none");
+            }
+
+            $(".inject-time-row").hide();
+            $("#inject-time-type-select").val(repeattype);
+            $("#inject-time-row-"+repeattype).show();
+
+            $("#node-input-payload").typedInput('type',this.payloadType);
+
+            $("#inject-time-type-select").change();
+            $("#inject-time-interval-time-start").change();
+
+        },
+        oneditsave: function() {
+            var repeat = "";
+            var crontab = "";
+            var type = $("#inject-time-type-select").val();
+            if (type == "none") {
+                // nothing
+            } else if (type == "interval") {
+                var count = $("#inject-time-interval-count").val();
+                var units = $("#inject-time-interval-units").val();
+                if (units == "s") {
+                    repeat = count;
+                } else {
+                    if (units == "m") {
+                        //crontab = "*/"+count+" * * * "+days;
+                        repeat = count * 60;
+                    } else if (units == "h") {
+                        //crontab = "0 */"+count+" * * "+days;
+                        repeat = count * 60 * 60;
+                    }
+                }
+            } else if (type == "interval-time") {
+                repeat = "";
+                var count = $("#inject-time-interval-time-units").val();
+                var startTime = Number($("#inject-time-interval-time-start").val());
+                var endTime = Number($("#inject-time-interval-time-end").val());
+                var days = $('#inject-time-interval-time-days  input[type=checkbox]:checked').map(function(_, el) {
+                    return $(el).val()
+                }).get();
+                if (days.length == 0) {
+                    crontab = "";
+                } else {
+                    if (days.length == 7) {
+                        days="*";
+                    } else {
+                        days = days.join(",");
+                    }
+                    var timerange = "";
+                    if (endTime == 0) {
+                        timerange = startTime+"-23";
+                    } else if (startTime+1 < endTime) {
+                        timerange = startTime+"-"+(endTime-1);
+                    } else if (startTime+1 == endTime) {
+                        timerange = startTime;
+                    } else {
+                        var startpart = "";
+                        var endpart = "";
+                        if (startTime == 23) {
+                            startpart = "23";
+                        } else {
+                            startpart = startTime+"-23";
+                        }
+                        if (endTime == 1) {
+                            endpart = "0";
+                        } else {
+                            endpart = "0-"+(endTime-1);
+                        }
+                        timerange = startpart+","+endpart;
+                    }
+                    if (count === "0") {
+                        crontab = count+" "+timerange+" * * "+days;
+                    } else {
+                        crontab = "*/"+count+" "+timerange+" * * "+days;
+                    }
+                }
+            } else if (type == "time") {
+                var time = $("#inject-time-time").val();
+                var days = $('#inject-time-time-days  input[type=checkbox]:checked').map(function(_, el) {
+                    return $(el).val()
+                }).get();
+                if (days.length == 0) {
+                    crontab = "";
+                } else {
+                    if (days.length == 7) {
+                        days="*";
+                    } else {
+                        days = days.join(",");
+                    }
+                    var parts = time.split(":");
+                    repeat = "";
+                    crontab = parts[1]+" "+parts[0]+" * * "+days;
+                }
+            }
+
+            $("#node-input-repeat").val(repeat);
+            $("#node-input-crontab").val(crontab);
+        },
+        button: {
+            onclick: function() {
+                var label = (this.name||this.payload).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+                if (this.payloadType === "date") { label = this._("inject.timestamp"); }
+                if (this.payloadType === "none") { label = this._("inject.blank"); }
+                var node = this;
+                $.ajax({
+                    url: "inject/"+this.id,
+                    type:"POST",
+                    success: function(resp) {
+                        RED.notify(node._("inject.success",{label:label}),"success");
+                    },
+                    error: function(jqXHR,textStatus,errorThrown) {
+                        if (jqXHR.status == 404) {
+                            RED.notify(node._("common.notification.error",{message:node._("common.notification.errors.not-deployed")}),"error");
+                        } else if (jqXHR.status == 500) {
+                            RED.notify(node._("common.notification.error",{message:node._("inject.errors.failed")}),"error");
+                        } else if (jqXHR.status == 0) {
+                            RED.notify(node._("common.notification.error",{message:node._("common.notification.errors.no-response")}),"error");
+                        } else {
+                            RED.notify(node._("common.notification.error",{message:node._("common.notification.errors.unexpected",{status:jqXHR.status,message:textStatus})}),"error");
+                        }
+                    }
+                });
+            }
+        }
+    });
+
+</script>
+
