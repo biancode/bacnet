@@ -1,6 +1,13 @@
 README file for BACnet Node-RED
 Michigan Tech - IMES Lab
 
+Tested version:
+Node-RED version : v0.15.2
+node.js version: v6.10.0
+
+*if your version is lower than this, you may have to update the packages. 
+*if your version is newer than this, we cannot guarantee its compatibility. You may have to debug!
+
 
 This project is an attempt to develop BACnet nodes in Node-RED using a BACnet stack. 
 Client was developed and tested in Linux Ubuntu 14.04.5 
