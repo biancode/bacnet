@@ -1,19 +1,19 @@
 // BACnet.js for node-RED
 // MTU-IMES Lab (2016 - 2017)
-// 
+//
 // Authors: Akhil Kurup < amkurup@mtu.edu >
 //          Sumit Srestha < sumits@mtu.edu >
-//
+//          Chong Cao < chongcao@mtu.edu >
 
 module.exports = function(RED) {
-	
+
   // required packages
   var xpath   = require('xpath');
   // var dom  = require('xmldom').DOMParser;
   var request = require('request');
   var cron    = require("cron");
   var bacnet  = require('bacnet'); // bacnet stack with Js wrapper
-  
+
   // Global variables
   // const object_address = '141.219.245.136';  // Server in IMES Lab
   // const object_address = '192.168.1.145';  // Server Akhil-PC
@@ -65,11 +65,11 @@ module.exports = function(RED) {
 
   // Code for Device object
   function device(config) {
-    
+
     RED.nodes.createNode(this, config);
-    
+
     var node = this;
-    
+
     const object_address                  = config.object_address;
     const object_name                     = config.object_name;
     const object_identifier               = config.object_identifier;
@@ -106,9 +106,9 @@ module.exports = function(RED) {
 
     // node.status({fill:"green",shape:"dot",text:"Requesting"});
     // console.log('\n Date: ', new Date().toDateString());
-    
+
     // check input of node
-    node.on('input', 
+    node.on('input',
       function(msg) {
         if (msg.object_type == 'device'){
           console.log('\n', msg.object_type, msg.service, ' service ');
@@ -138,17 +138,56 @@ module.exports = function(RED) {
         }
       });
   }
-  
+
   RED.nodes.registerType("device", device);
-  
-  
+
+
+  // Code for Server
+  function server(config) {
+
+    RED.nodes.createNode(this, config);
+
+    var node = this;
+
+    const server_address                = config.server_address;
+    const server_name                   = config.server_name;
+    const server_identifier             = config.server_identifier;
+    const server_status                 = config.server_status;
+    const vendor_name                   = config.vendor_name;
+    const vendor_identifier             = config.vendor_identifier;
+    const model_name                    = config.model_name;
+    const firmware_revision             = config.firmware_revision;
+    const application_software_version  = config.application_software_version;
+    const location                      = config.location;
+    const description                   = config.description;
+    const protocol_version              = config.protocol_version;
+    const protocol_conformance_class    = config.protocol_conformance_class;
+    const protocol_services_supported   = config.protocol_services_supported;
+    const protocol_objecttype_supported = config.protocol_objecttype_supported;
+    const object_list                   = config.object_list;
+
+    // Initialize BACnet Server
+    const r = bacnet.init({
+      datalink: {
+        iface:   'wlan0',
+        ip_port: '0xBAC0'
+      },
+      device: true
+    });
+
+    console.log('Initialized BACnet Server!\n\n');
+  }
+
+  RED.nodes.registerType("server", server);
+
+
   // Code for Analog Input object
   function analog_input(config) {
-    
+
     RED.nodes.createNode(this, config);
-    
+
     var node = this;
-    
+
     const object_name       = config.object_name;
     const object_identifier = config.object_identifier;
     const object_type       = config.object_type;
@@ -159,7 +198,7 @@ module.exports = function(RED) {
     const units             = config.units;
 
     // check input of node
-    node.on('input', 
+    node.on('input',
       function(msg) {
         if (msg.object_type == 'analog-input'){
           console.log('\n', msg.object_type, msg.service, ' service ');
@@ -185,14 +224,14 @@ module.exports = function(RED) {
   }
 
   RED.nodes.registerType("analog_input", analog_input);
-  
+
   // Code for Analog Output object
   function analog_output(config) {
-    
+
     RED.nodes.createNode(this, config);
-    
+
     var node = this;
-        
+
     const object_name       = config.object_name;
     const object_identifier = config.object_identifier;
     const object_type       = config.object_type;
@@ -201,9 +240,9 @@ module.exports = function(RED) {
     const event_state       = config.event_state;
     const out_of_service    = config.out_of_service;
     const units             = config.units;
-    
+
     // check input of node
-    node.on('input', 
+    node.on('input',
       function(msg) {
         if (msg.object_type == 'analog-output'){
           console.log('\n', msg.object_type, msg.service, ' service ');
@@ -233,9 +272,9 @@ module.exports = function(RED) {
 
   // Code for Analog Value object
   function analog_value(config) {
-    
+
     RED.nodes.createNode(this, config);
-    
+
     var node = this;
 
     const object_name       = config.object_name;
@@ -247,9 +286,9 @@ module.exports = function(RED) {
     const out_of_service    = config.out_of_service;
     const units             = config.units;
     const property_list     = config.property_list;
-    
+
     // check input of node
-    node.on('input', 
+    node.on('input',
       function(msg) {
         if (msg.object_type == 'analog-value'){
           console.log('\n', msg.object_type, msg.service, ' service ');
@@ -279,9 +318,9 @@ module.exports = function(RED) {
 
   // Code for Binary Input object
   function binary_input(config) {
-    
+
     RED.nodes.createNode(this, config);
-    
+
     var node = this;
 
     const object_name       = config.object_name;
@@ -295,7 +334,7 @@ module.exports = function(RED) {
     const property_list     = config.property_list;
 
     // check input of node
-    node.on('input', 
+    node.on('input',
       function(msg) {
         if (msg.object_type == 'binary-input'){
           console.log('\n', msg.object_type, msg.service, ' service ');
@@ -325,9 +364,9 @@ module.exports = function(RED) {
 
   // Code for Binary Output object
   function binary_output(config) {
-    
+
     RED.nodes.createNode(this, config);
-    
+
     var node = this;
 
     const object_name              = config.object_name;
@@ -342,9 +381,9 @@ module.exports = function(RED) {
     const priority_array           = config.priority_array;
     const relinquish_default       = config.relinquish_default;
     const current_command_priority = config.current_command_priority;
-    
+
     // check input of node
-    node.on('input', 
+    node.on('input',
       function(msg) {
         if (msg.object_type == 'binary-output'){
           console.log('\n', msg.object_type, msg.service, ' service ');
@@ -374,11 +413,11 @@ module.exports = function(RED) {
 
   // Code for Binary Value object
   function binary_value(config) {
-    
+
     RED.nodes.createNode(this, config);
-    
+
     var node = this;
-    
+
     const object_name       = config.object_name;
     const object_identifier = config.object_identifier;
     const object_type       = config.object_type;
@@ -390,7 +429,7 @@ module.exports = function(RED) {
     const property_list     = config.property_list;
 
     // check input of node
-    node.on('input', 
+    node.on('input',
       function(msg) {
         if (msg.object_type == 'binary-value'){
           console.log('\n', msg.object_type, msg.service, ' service ');
@@ -420,9 +459,9 @@ module.exports = function(RED) {
 
   // Code for multistate_input object
   function multistate_input(config) {
-    
+
     RED.nodes.createNode(this, config);
-    
+
     var node = this;
 
     const object_name       = config.object_name;
@@ -434,9 +473,9 @@ module.exports = function(RED) {
     const out_of_service    = config.out_of_service;
     const number_of_states  = config.number_of_states;
     const property_list     = config.property_list;
-    
+
     // check input of node
-    node.on('input', 
+    node.on('input',
       function(msg) {
         if (msg.object_type == 'multi-state-input'){
           console.log('\n', msg.object_type, msg.service, ' service ');
@@ -466,11 +505,11 @@ module.exports = function(RED) {
 
   // Code for multistate_output object
   function multistate_output(config) {
-    
+
     RED.nodes.createNode(this, config);
-    
+
     var node = this;
-    
+
     const object_name              = config.object_name;
     const object_identifier        = config.object_identifier;
     const object_type              = config.object_type;
@@ -483,9 +522,9 @@ module.exports = function(RED) {
     const priority_array           = config.priority_array;
     const relinquish_default       = config.relinquish_default;
     const current_command_priority = config.current_command_priority;
-    
+
     // check input of node
-    node.on('input', 
+    node.on('input',
       function(msg) {
         if (msg.object_type == 'multi-state-output'){
           console.log('\n', msg.object_type, msg.service, ' service ');
@@ -509,14 +548,14 @@ module.exports = function(RED) {
         }
       });
   }
-  
+
   RED.nodes.registerType("multistate_output", multistate_output);
-  
+
   // Custom built Inject Node
   function ServiceInjectNode(n) {
 
     RED.nodes.createNode(this,n);
-    
+
     this.topic          = n.topic;
     this.object_type    = n.object_type;
     this.property_name  = n.property_name;
@@ -530,9 +569,9 @@ module.exports = function(RED) {
     this.cronjob        = null;
     this.object_address = n.topic;
     this.service        = n.payload;
-    
+
     var node = this;
-    
+
     if (this.repeat && !isNaN(this.repeat) && this.repeat > 0) {
         this.repeat = this.repeat * 1000;
         if (RED.settings.verbose) { this.log(RED._("inject.repeat",this)); }
