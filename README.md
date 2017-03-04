@@ -3,9 +3,9 @@ Michigan Tech - IMES Lab
 
 > Package version:
 
-Node-RED version : v0.15.2
+Node-RED version : v0.15.2 (https://nodered.org/docs/getting-started/installation)
 
-node.js version: v6.10.0
+node.js version: v6.10.0 (https://nodejs.org/en/download/)
 
 *if your version is lower than this, you may have to update the packages. 
 
